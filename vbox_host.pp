@@ -12,8 +12,8 @@ node u01 {
                       "python-openvswitch",
                       "openvswitch-switch",
                       "virtualbox",
-                      "vagrant"
-                      "vim"
+                      "vagrant",
+                      "vim",
                     ]
   package { $host_packages:
     ensure => installed,
