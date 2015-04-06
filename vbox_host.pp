@@ -13,12 +13,16 @@ node u01 {
                       "openvswitch-switch",
                       "virtualbox",
                       "vagrant"
+                      "vim"
                     ]
   package { $host_packages:
     ensure => installed,
   }
 
   exec { "vagrant_providers":
+    user => "root",
+    path => "/usr/bin:/usr/sbin:/bin",
+    environment => "HOME=/root",
     command => "/usr/bin/vagrant plugin install vagrant-vbguest",
     require => [
                   Package["vagrant"],
