@@ -12,30 +12,41 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box_check_update = false
 
   config.vm.define "riak1" do |riak1|
-    riak1.vm.network "private_network",
-                      virtualbox__intnet: "vport1",
-                      ip: "192.168.233.101",
-                      netmask: "255.255.255.0"
+#    riak1.vm.network "private_network",
+#                      virtualbox__intnet: "vport1",
+#                      ip: "192.168.233.101",
+#                      netmask: "255.255.255.0"
+
+    riak1.vm.network "public_network", bridge: 'vport1', ip:"192.168.233.101", :auto_config => "false", :netmask => "255.255.255.0", :adapter => 1
 
     riak1.vm.hostname = "riak1"
+    riak1.ssh.host = "192.168.233.101"
     riak1.vm.provider "virtualbox" do |vb|
       vb.name = "riak1"
+      vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
   end
 
   config.vm.define "riak2" do |riak2|
+    riak2.vm.network "public_network", bridge: 'vport2', ip:"192.168.233.102", :auto_config => "false", :netmask => "255.255.255.0"
+
     riak2.vm.hostname = "riak2"
     riak2.vm.provider "virtualbox" do |vb|
+      vb.name = "riak2"
+      vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
   end
 
   config.vm.define "riak3" do |riak3|
+    riak3.vm.network :public_network, :bridge => 'vport3', :use_dhcp_assigned_default_route => true
     riak3.vm.hostname = "riak3"
     riak3.vm.provider "virtualbox" do |vb|
+      vb.name = "riak3"
+      vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
