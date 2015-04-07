@@ -7,9 +7,9 @@ route add default gw 192.168.233.2
 ip tuntap add mode tap vport1
 ip tuntap add mode tap vport2
 ip tuntap add mode tap vport3
-#ifconfig vport1 up
-#ifconfig vport2 up
-#ifconfig vport3 up
+ifconfig vport1 up
+ifconfig vport2 up
+ifconfig vport3 up
 ovs-vsctl add-port rbridge vport1
 ovs-vsctl add-port rbridge vport2
 ovs-vsctl add-port rbridge vport3
