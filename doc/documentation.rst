@@ -60,8 +60,8 @@ Basically all I have used was:
 - Git as a version control system
 - Vim as an editor of choice
 
-Setup
-======
+Installation
+===============
 
 Requirements
 ----------------
@@ -70,26 +70,49 @@ Requirements
 - Access to Vagrant ubuntu/trusty64 image, Ubuntu standard repositories, Riak CS package
 
 
-Preparations
+Setup
 --------------
 
 1. Install Ubuntu 14.04 box (hostname u01)
-#.  Update u01 packages list
+2.  Update u01 packages list
 
 .. code-block:: bash 
 
     root@u01:~# /usr/bin/apt-get -y update
 
-#. Install git and puppet
+3. Install git and puppet
 
 .. code-block:: bash 
     
     root@u01:~# /usr/bin/apt-get -y install git puppet
 
-#. Clone configuration repository
+4. Clone configuration repository into /root/proj directory
 
 .. code-block:: bash 
 
     root@u01:~# cd /root && git clone https://github.com/krzaku/proj.git
 
-#. Apply configuration for u01
+5. Apply configuration for u01
+
+.. code-block:: bash 
+
+    root@u01:~/proj# puppet apply /root/proj/puppet/manifests/site.pp 
+
+Riak CS installation
+----------------------
+
+1. Deploy Riak vms
+
+.. code-block:: bash 
+
+    root@u01:~# cd /root/proj && vagrant up
+
+Next steps
+============
+
+
+
+Issues
+========
+
+- Nested virtualization is very very slow
