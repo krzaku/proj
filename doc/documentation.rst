@@ -56,8 +56,9 @@ Basically all I have used was:
 - Ubuntu 14.04 as an operating system
 - Vagrant to manage vms
 - Puppet to set up software
-- docutils to render rst documentation into html 
-- vim as an editor of choice
+- Docutils to render rst documentation into html 
+- Git as a version control system
+- Vim as an editor of choice
 
 Setup
 ======
@@ -68,15 +69,27 @@ Requirements
 - Ubuntu 14.04 box capable of hosting 3 Riak vms
 - Access to Vagrant ubuntu/trusty64 image, Ubuntu standard repositories, Riak CS package
 
+
 Preparations
 --------------
 
+1. Install Ubuntu 14.04 box (hostname u01)
+#.  Update u01 packages list
+
 .. code-block:: bash 
 
-    test test stest stst
-    test test stest stst
-    test test stest stst
-    test test stest stst
-    test test stest stst
+    root@u01:~# /usr/bin/apt-get -y update
 
+#. Install git and puppet
 
+.. code-block:: bash 
+    
+    root@u01:~# /usr/bin/apt-get -y install git puppet
+
+#. Clone configuration repository
+
+.. code-block:: bash 
+
+    root@u01:~# cd /root && git clone https://github.com/krzaku/proj.git
+
+#. Apply configuration for u01
