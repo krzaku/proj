@@ -51,7 +51,7 @@ node basehost {
     command => "/bin/bash /root/proj/puppet/files/setup_host_net.sh",
     require => [
                   Package["openvswitch-switch"],
-                  File["/root/proj/puppet/files/setup_host_net.sh"],
+#                  File["/root/proj/puppet/files/setup_host_net.sh"],
                ],
   }
 
