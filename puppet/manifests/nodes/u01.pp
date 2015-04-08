@@ -1,1 +1,1 @@
-node riak1 inherits basehost {}
+node u01 inherits basehost {}
