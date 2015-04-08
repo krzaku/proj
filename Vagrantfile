@@ -1,6 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+#By: Tomasz Zaleski <tzaleski@gmail.com>
+#Date: 2015-04-09 23:00
+#Ver: 1.0.0
+
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -41,7 +46,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "riak3" do |riak3|
-    riak3.vm.network :public_network, :bridge => 'vport3', :use_dhcp_assigned_default_route => true
+    #riak3.vm.network :public_network, :bridge => 'vport3', :use_dhcp_assigned_default_route => true
+    riak3.vm.network "public_network", bridge: 'vport3', ip:"192.168.233.103", :auto_config => "false", :netmask => "255.255.255.0"
 
     riak3.vm.hostname = "riak3"
     riak3.vm.provider "virtualbox" do |vb|

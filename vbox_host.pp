@@ -1,3 +1,7 @@
+#By: Tomasz Zaleski <tzaleski@gmail.com>
+#Date: 2015-04-09 23:00
+#Ver: 1.0.0
+
 node u01 {
 
   exec { "apt_get_update":

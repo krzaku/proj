@@ -1,3 +1,9 @@
+#!/bin/bash
+
+#By: Tomasz Zaleski <tzaleski@gmail.com>
+#Date: 2015-04-09 23:00
+#Ver: 1.0.0
+
 ovs-vsctl add-br rbridge
 #ifconfig rbridge up
 ovs-vsctl add-port rbridge eth0
