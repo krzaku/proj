@@ -83,6 +83,7 @@ node riakfirst inherits basenode {
     enable => true,
     require  => [
                    Package["stanchion"],
+                   File["/etc/stanchion/stanchion.conf"],
                 ]
   }
 
@@ -91,6 +92,7 @@ node riakfirst inherits basenode {
     enable => true,
     require  => [
                    Package["riak-cs"],
+                   File["/etc/riak-cs/riak-cs.conf"],
                    Service["stanchion"],
                 ]
   }
