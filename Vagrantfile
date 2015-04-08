@@ -31,6 +31,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
+
+    riak1.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.manifest_file  = "site.pp"
+      puppet.options = "--verbose --debug"
+    end
+
   end
 
   config.vm.define "riak2" do |riak2|
@@ -42,6 +49,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
+    end
+
+    riak2.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.manifest_file  = "site.pp"
+      puppet.options = "--verbose --debug"
     end
   end
 
@@ -55,6 +68,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
+    end
+
+    riak3.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.manifest_file  = "site.pp"
+      puppet.options = "--verbose --debug"
     end
   end
 
