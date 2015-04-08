@@ -78,6 +78,23 @@ node riakfirst inherits basenode {
                 ]
   }
 
+  service { "stanchion":
+    ensure => running,
+    enable => true,
+    require  => [
+                   Package["stanchion"],
+                ]
+  }
+
+  service { "riak-cs":
+    ensure => running,
+    enable => true,
+    require  => [
+                   Package["riak-cs"],
+                   Service["stanchion"],
+                ]
+  }
+
 }
 
 node basehost {
