@@ -54,6 +54,15 @@ node riakfirst inherits basenode {
                 ]
   }
 
+  file { "riak_cs_conf":
+    ensure => file,
+    owner => riakcs,
+    group => riak,
+    mode => 0644,
+    path => '/etc/riak-cs/riak-cs.conf',
+    source => "/vagrant/files/r1-riak-cs.conf"
+  }
+
 }
 
 node basehost {
