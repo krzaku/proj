@@ -34,6 +34,28 @@ node basenode {
 
 }
 
+node riakfirst inherits basenode {
+
+  exec { "download_stanchion":
+    command => "/usr/bin/wget 192.168.233.209/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
+#    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/stanchion/2.0/2.0.0/ubuntu/trusty/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
+    cwd     => "/tmp",
+    creates => "/tmp/stanchion_2.0.0-1_amd64.deb",
+  }
+
+  package { "install_stanchion":
+    name     =>  "stanchion",
+    ensure   =>  installed,
+    provider =>  dpkg,
+    source   =>  "/tmp/stanchion_2.0.0-1_amd64.deb",
+    require  => [
+                   Exec["download_stanchion"],
+                   Package["riak-cs"],
+                ]
+  }
+
+}
+
 node basehost {
 
   exec { "apt_get_update":

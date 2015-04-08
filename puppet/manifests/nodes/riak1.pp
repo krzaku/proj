@@ -1,1 +1,1 @@
-node riak1 inherits basenode {}
+node riak1 inherits riakfirst {}
