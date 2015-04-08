@@ -72,7 +72,7 @@ node riakfirst inherits basenode {
     group => riak,
     mode => 0644,
     path => '/etc/stanchion/stanchion.conf',
-    source => "/vagrant/files/stanchion.conf"
+    source => "/vagrant/files/stanchion.conf",
     require  => [
                    Package["stanchion"],
                 ]
