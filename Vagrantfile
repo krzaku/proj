@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     riak1.vm.hostname = "riak1"
     riak1.vm.provider "virtualbox" do |vb|
       vb.name = "riak1"
-      vb.gui = true
+      #vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
@@ -46,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     riak2.vm.hostname = "riak2"
     riak2.vm.provider "virtualbox" do |vb|
       vb.name = "riak2"
-      vb.gui = true
+      #vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
@@ -65,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     riak3.vm.hostname = "riak3"
     riak3.vm.provider "virtualbox" do |vb|
       vb.name = "riak3"
-      vb.gui = true
+      #vb.gui = true
       vb.customize [ "modifyvm", :id, "--cpus", "4" ]
       vb.customize ["modifyvm", :id, "--memory", 1024]
     end
