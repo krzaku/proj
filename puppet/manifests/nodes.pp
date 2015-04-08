@@ -61,6 +61,21 @@ node riakfirst inherits basenode {
     mode => 0644,
     path => '/etc/riak-cs/riak-cs.conf',
     source => "/vagrant/files/r1-riak-cs.conf"
+    require  => [
+                   Package["riak-cs"],
+                ]
+  }
+
+  file { "stanchion_conf":
+    ensure => file,
+    owner => stanchion,
+    group => riak,
+    mode => 0644,
+    path => '/etc/stanchion/stanchion.conf',
+    source => "/vagrant/files/stanchion.conf"
+    require  => [
+                   Package["stanchion"],
+                ]
   }
 
 }
