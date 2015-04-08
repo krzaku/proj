@@ -60,7 +60,7 @@ node riakfirst inherits basenode {
     group => riak,
     mode => 0644,
     path => '/etc/riak-cs/riak-cs.conf',
-    source => "/vagrant/files/r1-riak-cs.conf"
+    source => "/vagrant/files/r1-riak-cs.conf",
     require  => [
                    Package["riak-cs"],
                 ]
