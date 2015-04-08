@@ -40,9 +40,20 @@ node basehost {
                       "vagrant",
                       "vim",
                     ]
+
   package { $host_packages:
     ensure => installed,
   }
+
+  exec { "network_setup":
+    user => "root",
+    path => "/usr/bin:/usr/sbin:/bin",
+    command => "/bin/bash /root/proj/setup_switch.sh",
+    require => [
+                  Package["openvswitch-switch"],
+               ],
+  }
+
 
   exec { "vagrant_providers":
     user => "root",
