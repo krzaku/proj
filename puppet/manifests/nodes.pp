@@ -45,12 +45,22 @@ node basehost {
     ensure => installed,
   }
 
+  file { '/root/setup_host_net.sh':
+    ensure => present,
+    owner => 'root',
+    group => 'root',
+    mode => '0700',
+    source => 'puppet://puppet/files/setup_host_net.sh',
+    creates => "/root/setup_host_net.sh"
+  }
+
   exec { "network_setup":
     user => "root",
     path => "/usr/bin:/usr/sbin:/bin",
-    command => "/bin/bash /root/proj/setup_switch.sh",
+    command => "/bin/bash /root/setup_host_net.sh",
     require => [
                   Package["openvswitch-switch"],
+                  File["/root/setup_host_net.sh"],
                ],
   }
 
