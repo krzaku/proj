@@ -23,6 +23,15 @@ node basenode {
                 ]
   }
 
+  file { "limits_conf_riak":
+    ensure => file, 
+    owner => root,
+    group => root,
+    mode => 0644,
+    path => '/etc/security/limits.d/riakcs.conf',
+    source => "/vagrant/files/limits_riakcs.conf"
+  }
+
 }
 
 node basehost {
@@ -48,10 +57,10 @@ node basehost {
   exec { "network_setup":
     user => "root",
     path => "/usr/bin:/usr/sbin:/bin",
-    command => "/bin/bash /root/proj/puppet/files/setup_host_net.sh",
+    command => "/bin/bash /root/proj/scripts/setup_host_net.sh",
     require => [
                   Package["openvswitch-switch"],
-#                  File["/root/proj/puppet/files/setup_host_net.sh"],
+#                  File["/root/proj/scripts/setup_host_net.sh"],
                ],
   }
 
