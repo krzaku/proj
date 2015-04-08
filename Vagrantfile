@@ -8,18 +8,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
 #  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.box_url = "http://192.168.233.206/iso/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.boot_timeout = 900
+  config.vm.boot_timeout = 1200
 
   #config.ssh.private_key_path = "my_new_ssh_key"
   #config.ssh.forward_agent = true
 
   config.vm.define "riak1" do |riak1|
 
-    riak1.vm.network "public_network", bridge: 'vport1', ip:"192.168.233.101", :auto_config => "false", :netmask => "255.255.255.0"
+    riak1.vm.network "public_network", bridge: 'vport1', ip:"192.168.233.101",  :netmask => "255.255.255.0"
     #riak1.vm.network "public_network", bridge: 'vport1', ip:"192.168.233.101", :netmask => "255.255.255.0", :adapter => 1
+    #riak1.ssh.host = "192.168.233.101"
 
     riak1.vm.hostname = "riak1"
-    riak1.ssh.host = "192.168.233.101"
     riak1.vm.provider "virtualbox" do |vb|
       vb.name = "riak1"
       vb.gui = true
@@ -30,7 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "riak2" do |riak2|
     riak2.vm.network "public_network", bridge: 'vport2', ip:"192.168.233.102", :auto_config => "false", :netmask => "255.255.255.0"
-    #riak2.vm.network "public_network", bridge: 'vport2', ip:"192.168.233.102", :auto_config => "false", :netmask => "255.255.255.0"
 
     riak2.vm.hostname = "riak2"
     riak2.vm.provider "virtualbox" do |vb|
@@ -42,8 +41,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "riak3" do |riak3|
-    #riak3.vm.network :public_network, :bridge => 'vport3', :use_dhcp_assigned_default_route => true
-    riak3.vm.network "public_network", bridge: 'vport3', ip:"192.168.233.103", :auto_config => "false", :netmask => "255.255.255.0"
+    riak3.vm.network :public_network, :bridge => 'vport3', :use_dhcp_assigned_default_route => true
+
     riak3.vm.hostname = "riak3"
     riak3.vm.provider "virtualbox" do |vb|
       vb.name = "riak3"
