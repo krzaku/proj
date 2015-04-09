@@ -6,7 +6,7 @@ By: Tomasz Zaleski <tzaleski@gmail.com>
 
 Date: 2015-04-09 23:00
 
-Ver: 1.0.0
+Ver: 0.1
 
 .. contents::
 

@@ -3,7 +3,7 @@
 
 #By: Tomasz Zaleski <tzaleski@gmail.com>
 #Date: 2015-04-09 23:00
-#Ver: 1.0.0
+#Ver: 0.1
 
 
 VAGRANTFILE_API_VERSION = "2"
@@ -11,8 +11,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
-#  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.box_url = "http://192.168.233.209/iso/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  #config.vm.box_url = "http://192.168.233.209/iso/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.boot_timeout = 1200
 
   #config.ssh.private_key_path = "my_new_ssh_key"

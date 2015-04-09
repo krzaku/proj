@@ -7,15 +7,15 @@ node basenode {
   Exec["apt_get_update"] -> Package <| |>
 
   exec { "download_riak":
-    command => "/usr/bin/wget 192.168.233.216/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
-#    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.5/ubuntu/trusty/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
+#    command => "/usr/bin/wget 192.168.233.216/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
+    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.5/ubuntu/trusty/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
     cwd     => "/tmp",
     creates => "/tmp/riak_2.0.5-1_amd64.deb",
   }
 
   exec { "download_riakcs":
-    command => "/usr/bin/wget 192.168.233.216/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
-#    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak-cs/2.0/2.0.0/ubuntu/trusty/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
+#    command => "/usr/bin/wget 192.168.233.216/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
+    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak-cs/2.0/2.0.0/ubuntu/trusty/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
     cwd     => "/tmp",
     creates => "/tmp/riak-cs_2.0.0-1_amd64.deb",
   }
@@ -56,8 +56,8 @@ node basenode {
 node riakfirst inherits basenode {
 
   exec { "download_stanchion":
-    command => "/usr/bin/wget 192.168.233.216/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
-#    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/stanchion/2.0/2.0.0/ubuntu/trusty/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
+#    command => "/usr/bin/wget 192.168.233.216/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
+    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/stanchion/2.0/2.0.0/ubuntu/trusty/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
     cwd     => "/tmp",
     creates => "/tmp/stanchion_2.0.0-1_amd64.deb",
   }
@@ -121,24 +121,24 @@ node riakfirst inherits basenode {
                 ]
   }
 
-  service { "stanchion":
-    ensure => running,
-    enable => true,
-    require  => [
-                   Package["stanchion"],
-                   File["/etc/stanchion/stanchion.conf"],
-                ]
-  }
-
-  service { "riak-cs":
-    ensure => running,
-    enable => true,
-    require  => [
-                   Package["riak-cs"],
-                   File["/etc/riak-cs/riak-cs.conf"],
-                   Service["stanchion"],
-                ]
-  }
+#  service { "stanchion":
+#    ensure => running,
+#    enable => true,
+#    require  => [
+#                   Package["stanchion"],
+#                   File["/etc/stanchion/stanchion.conf"],
+#                ]
+#  }
+#
+#  service { "riak-cs":
+#    ensure => running,
+#    enable => true,
+#    require  => [
+#                   Package["riak-cs"],
+#                   File["/etc/riak-cs/riak-cs.conf"],
+#                   Service["stanchion"],
+#                ]
+#  }
 
 }
 
@@ -168,7 +168,6 @@ node basehost {
     command => "/bin/bash /root/proj/scripts/setup_host_net.sh",
     require => [
                   Package["openvswitch-switch"],
-#                  File["/root/proj/scripts/setup_host_net.sh"],
                ],
   }
 
