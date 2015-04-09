@@ -85,13 +85,13 @@ node riakfirst inherits basenode {
                 ]
   }
 
-  file { "riak_adv_conf":
+  file { "riak_app_conf":
     ensure => file,
     owner => riakcs,
     group => riak,
     mode => 0644,
-    path => '/etc/riak/advanced.config',
-    source => "/vagrant/files/r1-advanced.config",
+    path => '/etc/riak/app.config',
+    source => "/vagrant/files/r1-pp.config",
     require  => [
                    Package["riak"],
                 ]
