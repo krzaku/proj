@@ -91,7 +91,7 @@ node riakfirst inherits basenode {
     group => riak,
     mode => 0644,
     path => '/etc/riak/app.config',
-    source => "/vagrant/files/r1-pp.config",
+    source => "/vagrant/files/r1-app.config",
     require  => [
                    Package["riak"],
                 ]
