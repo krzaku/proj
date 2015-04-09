@@ -6,12 +6,31 @@ node basenode {
 
   Exec["apt_get_update"] -> Package <| |>
 
+  exec { "download_riak":
+    command => "/usr/bin/wget 192.168.233.216/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
+#    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.5/ubuntu/trusty/riak_2.0.5-1_amd64.deb -O /tmp/riak_2.0.5-1_amd64.deb",
+    cwd     => "/tmp",
+    creates => "/tmp/riak_2.0.5-1_amd64.deb",
+  }
+
   exec { "download_riakcs":
-    command => "/usr/bin/wget 192.168.233.209/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
+    command => "/usr/bin/wget 192.168.233.216/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
 #    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak-cs/2.0/2.0.0/ubuntu/trusty/riak-cs_2.0.0-1_amd64.deb -O /tmp/riak-cs_2.0.0-1_amd64.deb",
     cwd     => "/tmp",
     creates => "/tmp/riak-cs_2.0.0-1_amd64.deb",
   }
+
+  package { "install_riak":
+    name     =>  "riak",
+    ensure   =>  installed,
+    provider =>  dpkg,
+    source   =>  "/tmp/riak_2.0.5-1_amd64.deb",
+    require  => [
+                   Exec["download_riakcs"],
+                   Package["riak"],
+                ]
+  }
+
 
   package { "install_riakcs":
     name     =>  "riak-cs",
@@ -20,6 +39,7 @@ node basenode {
     source   =>  "/tmp/riak-cs_2.0.0-1_amd64.deb",
     require  => [
                    Exec["download_riakcs"],
+                   Package["riak"],
                 ]
   }
 
@@ -37,7 +57,7 @@ node basenode {
 node riakfirst inherits basenode {
 
   exec { "download_stanchion":
-    command => "/usr/bin/wget 192.168.233.209/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
+    command => "/usr/bin/wget 192.168.233.216/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
 #    command => "/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/stanchion/2.0/2.0.0/ubuntu/trusty/stanchion_2.0.0-1_amd64.deb -O /tmp/stanchion_2.0.0-1_amd64.deb",
     cwd     => "/tmp",
     creates => "/tmp/stanchion_2.0.0-1_amd64.deb",
