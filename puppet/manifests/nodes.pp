@@ -27,7 +27,7 @@ node basenode {
     source   =>  "/tmp/riak_2.0.5-1_amd64.deb",
     require  => [
                    Exec["download_riakcs"],
-                   Package["riak"],
+                   File["/tmp/riak-cs_2.0.0-1_amd64.deb"],
                 ]
   }
 
@@ -39,6 +39,7 @@ node basenode {
     source   =>  "/tmp/riak-cs_2.0.0-1_amd64.deb",
     require  => [
                    Exec["download_riakcs"],
+                   File["/tmp/riak-cs_2.0.0-1_amd64.deb"],
                    Package["riak"],
                 ]
   }
