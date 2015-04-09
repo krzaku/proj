@@ -107,10 +107,43 @@ Riak CS installation
 
     root@u01:~# cd /root/proj && vagrant up
 
-Next steps
+TODO
 ============
 
+Configure the Riak cluster
+----------------------------
 
+Riak, Riak CS and Stanchion require configuration.
+
+Adjust Vagrant's Ubuntu image for production environment
+----------------------------------------------------------
+
+- Replace ssh keys in the image for new ones
+- Change default passwords
+- Use multiple and dedicated disk partitions.
+
+Harden operating system
+--------------------------
+
+- Disallow root to log in via ssh, use only key-based authentication
+- Use sudo instead of su
+- Set up NTP
+- Disable unnecessary services
+- Set up firewall rules (iptables/ufw)
+- Log to remote host
+- Harden network via sysctl
+- Set default to deny in tcp wrappers
+- Limit users via limits.conf
+- Add security mount options (like nosuid, noexec) to fstab
+- Use integrity check software (AIDE/tripwire)
+- Set up AppArmor
+ 
+Next steps
+-------------
+
+- Set up backup
+- Set up monitoring
+- Improve high availability
 
 Issues
 ========

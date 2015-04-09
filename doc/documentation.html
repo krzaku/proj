@@ -364,6 +364,14 @@ ul.auto-toc {
 <li><a class="reference internal" href="#riak-cs-installation" id="id11">Riak CS installation</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#todo" id="id12">TODO</a><ul>
+<li><a class="reference internal" href="#configure-the-riak-cluster" id="id13">Configure the Riak cluster</a></li>
+<li><a class="reference internal" href="#adjust-vagrant-s-ubuntu-image-for-production-environment" id="id14">Adjust Vagrant's Ubuntu image for production environment</a></li>
+<li><a class="reference internal" href="#harden-operating-system" id="id15">Harden operating system</a></li>
+<li><a class="reference internal" href="#next-steps" id="id16">Next steps</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#issues" id="id17">Issues</a></li>
 </ul>
 </div>
 <div class="section" id="task">
@@ -461,6 +469,52 @@ root&#64;u01:~/proj# puppet apply /root/proj/puppet/manifests/site.pp
 root&#64;u01:~# <span class="name builtin">cd</span> /root/proj <span class="operator">&amp;&amp;</span> vagrant up
 </pre>
 </div>
+</div>
+<div class="section" id="todo">
+<h1><a class="toc-backref" href="#id12">TODO</a></h1>
+<div class="section" id="configure-the-riak-cluster">
+<h2><a class="toc-backref" href="#id13">Configure the Riak cluster</a></h2>
+<p>Riak, Riak CS and Stanchion require configuration.</p>
+</div>
+<div class="section" id="adjust-vagrant-s-ubuntu-image-for-production-environment">
+<h2><a class="toc-backref" href="#id14">Adjust Vagrant's Ubuntu image for production environment</a></h2>
+<ul class="simple">
+<li>Replace ssh keys in the image for new ones</li>
+<li>Change default passwords</li>
+<li>Use multiple and dedicated disk partitions.</li>
+</ul>
+</div>
+<div class="section" id="harden-operating-system">
+<h2><a class="toc-backref" href="#id15">Harden operating system</a></h2>
+<ul class="simple">
+<li>Disallow root to log in via ssh, use only key-based authentication</li>
+<li>Use sudo instead of su</li>
+<li>Set up NTP</li>
+<li>Disable unnecessary services</li>
+<li>Set up firewall rules (iptables/ufw)</li>
+<li>Log to remote host</li>
+<li>Harden network via sysctl</li>
+<li>Set default to deny in tcp wrappers</li>
+<li>Limit users via limits.conf</li>
+<li>Add security mount options (like nosuid, noexec) to fstab</li>
+<li>Use integrity check software (AIDE/tripwire)</li>
+<li>Set up AppArmor</li>
+</ul>
+</div>
+<div class="section" id="next-steps">
+<h2><a class="toc-backref" href="#id16">Next steps</a></h2>
+<ul class="simple">
+<li>Set up backup</li>
+<li>Set up monitoring</li>
+<li>Improve high availability</li>
+</ul>
+</div>
+</div>
+<div class="section" id="issues">
+<h1><a class="toc-backref" href="#id17">Issues</a></h1>
+<ul class="simple">
+<li>Nested virtualization is very very slow</li>
+</ul>
 </div>
 </div>
 </body>
