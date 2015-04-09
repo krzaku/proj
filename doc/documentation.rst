@@ -67,14 +67,14 @@ Requirements
 ----------------
 
 - Ubuntu 14.04 box capable of hosting 3 Riak vms
-- Access to Vagrant ubuntu/trusty64 image, Ubuntu standard repositories, Riak CS package
+- Access to Vagrant ubuntu/trusty64 image, Ubuntu standard repositories, Riak, Riak CS, Stanchion packages
 
 
 Setup
 --------------
 
 1. Install Ubuntu 14.04 box (hostname u01)
-2.  Update u01 packages list
+2. Update u01 packages list
 
 .. code-block:: bash 
 
@@ -98,6 +98,13 @@ Setup
 
     root@u01:~/proj# puppet apply /root/proj/puppet/manifests/site.pp 
 
+This step will:
+
+- install openvswitch-switch, virtualbox, vagrant and vim packages. 
+- install vagrant-vbguest Vagrant plugin
+- set up openvswitch bridge rbridge (with ip address and default routing)
+- create 3 network interfaces: vport1, vport2 and vport3 and add them to rbridge
+
 Riak CS installation
 ----------------------
 
@@ -106,6 +113,11 @@ Riak CS installation
 .. code-block:: bash 
 
     root@u01:~# cd /root/proj && vagrant up
+
+This step will create 3 vms: 
+
+- riak1 - first node with Stanchion, Riak and Riak CS
+- riak2 and riak3 - nodes with Riak and Riak CS
 
 TODO
 ============
