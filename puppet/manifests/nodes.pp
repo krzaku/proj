@@ -87,7 +87,7 @@ node riakfirst inherits basenode {
 
   file { "riak_app_conf":
     ensure => file,
-    owner => riakcs,
+    owner => riak,
     group => riak,
     mode => 0644,
     path => '/etc/riak/app.config',
