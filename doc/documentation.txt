@@ -91,7 +91,7 @@ root@u01:~# /usr/bin/apt-get -y install git puppet
 
     4. Clone configuration repository into /root/proj directory
 
-root@u01:~# cd /root && git clone https://github.com/krzaku/proj.git
+root@u01:~# cd /root && git clone https://github.com/tasktz/proj.git
 
     5. Apply configuration for u01
 

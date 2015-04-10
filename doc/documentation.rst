@@ -90,7 +90,7 @@ Setup
 
 .. code-block:: bash 
 
-    root@u01:~# cd /root && git clone https://github.com/krzaku/proj.git
+    root@u01:~# cd /root && git clone https://github.com/tasktz/proj.git
 
 5. Apply configuration for u01
 
