@@ -119,8 +119,7 @@ This step will create 3 vms:
 - riak1 (eth1 ip address 192.168.233.101/24) - first node with Stanchion, Riak and Riak CS
 - riak2 (eth1 ip address 192.168.233.102/24) and riak3 (eth1 ip address 192.168.233.103/24) - nodes with Riak and Riak CS
 
-eth0 interface is NAT-ed with u01 for Vagrant management.
-eth1 interface is bridged with vport1 for riak1, vport2 for riak2 and vport3 for riak3.
+eth0 interface is NAT-ed with u01 for Vagrant management, eth1 interface is bridged with vport1 on riak1 vm, vport2 on riak2 vm and vport3 on riak3 vm.
 
 
 TODO
