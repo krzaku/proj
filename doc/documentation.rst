@@ -102,7 +102,7 @@ This step will:
 
 - install openvswitch-switch, virtualbox, vagrant and vim packages. 
 - install vagrant-vbguest Vagrant plugin
-- set up openvswitch bridge rbridge (with ip address and default routing)
+- set up openvswitch bridge rbridge (with ip address 192.168.233.100 and default gateway 192.168.233.2)
 - create 3 network interfaces: vport1, vport2 and vport3 and add them to rbridge
 
 Riak CS installation
@@ -116,8 +116,12 @@ Riak CS installation
 
 This step will create 3 vms: 
 
-- riak1 - first node with Stanchion, Riak and Riak CS
-- riak2 and riak3 - nodes with Riak and Riak CS
+- riak1 (eth1 ip address 192.168.233.101/24) - first node with Stanchion, Riak and Riak CS
+- riak2 (eth1 ip address 192.168.233.102/24) and riak3 (eth1 ip address 192.168.233.103/24) - nodes with Riak and Riak CS
+
+eth0 interface is NAT-ed with u01 for Vagrant management.
+eth1 interface is bridged with vport1 for riak1, vport2 for riak2 and vport3 for riak3.
+
 
 TODO
 ============
@@ -125,14 +129,14 @@ TODO
 Configure the Riak cluster
 ----------------------------
 
-Riak, Riak CS and Stanchion require configuration.
+Riak, Riak CS and Stanchion were not configured.
 
 Adjust Vagrant's Ubuntu image for production environment
 ----------------------------------------------------------
 
-- Replace ssh keys in the image for new ones
+- Replace ssh keys in the Vagrant image for self created
 - Change default passwords
-- Use multiple and dedicated disk partitions.
+- Use multiple and dedicated disk partitions
 
 Harden operating system
 --------------------------
